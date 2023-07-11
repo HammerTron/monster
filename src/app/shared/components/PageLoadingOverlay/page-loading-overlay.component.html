@@ -1,0 +1,10 @@
+<div id="PageLoadingWrapper" class="PageLoading" *ngIf="isAppBusy$ | async">
+    <ng-container>
+        <div class="Loading">
+            <div class="Loading__Icon"></div>
+            <div class="Loading__Icon"></div>
+            <div class="Loading__Icon"></div>
+        </div>
+        <div class="Loading__Text">{{ textToDisplay }}</div>
+    </ng-container>
+</div>
