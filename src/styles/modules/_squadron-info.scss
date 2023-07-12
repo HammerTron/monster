@@ -1,0 +1,217 @@
+@import 'src/styles/utility';
+
+section#job-page {
+    &.job-page {
+        padding-top: 10rem;
+
+        .job-company {
+            height: auto;
+            background: none;
+            border: 0;
+            padding: 0;
+
+            img {
+                max-width: 100%;
+            }
+
+            &:hover {
+                padding: 0;
+            }
+        }
+
+        .job-page {
+            &__main {
+                background: $white;
+                border: 1px solid #e3e3e3;
+                padding: 35px;
+            }
+
+            &__sidebar {
+                .job-sidebar {
+                    background: $white;
+                }
+            }
+        }
+
+        .job-company-info {
+            .text-gray {
+                font-size: 1.6rem;
+            }
+        }
+
+        .company-info {
+            .aircraft {
+                span {
+                    padding-right: 1rem;
+
+                    &::after {
+                        content: ',';
+                        display: inline;
+                    }
+
+                    &:last-of-type {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .job-tab {
+            padding-top: 2.5rem;
+
+            .hiring-status {
+                position: relative;
+                background: rgba($border-gray-light, 0.3);
+                border: 1px solid $border-gray-light;
+                border-radius: 4px;
+                font-size: 1.6rem;
+                margin-bottom: 2.5rem;
+                padding: 2rem;
+
+                .fa {
+                    width: 2.4rem;
+                    color: $blue;
+                    display: inline-block;
+                    text-align: center;
+                }
+
+                &--hiring {
+                    .fa {
+                        color: $success;
+                    }
+                }
+
+                &--not-hiring {
+                    .fa {
+                        color: $warning;
+                    }
+                }
+
+                .small {
+                    color: $warning;
+                    padding-left: 3.3rem;
+                }
+            }
+        }
+
+        .job-overview {
+            .fa {
+                color: $blue;
+                padding-right: 0.5rem;
+            }
+
+            .small {
+                color: $warning;
+            }
+
+            &__content {
+                padding: 0.5rem 0 0 2.5rem;
+
+                &--website {
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .job-faq {
+            h5 {
+                display: block;
+                padding: 0 0 1rem 0;
+            }
+
+            &__question {
+                font-size: 1.6rem;
+                font-weight: 500;
+                padding: 1rem 0 0.5rem 0;
+            }
+
+            &__answer {
+                border-bottom: 1px solid $border-gray-light;
+                color: $text-gray;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+
+                &:last-of-type {
+                    border-bottom: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .job-section {
+            border-bottom: 1px solid $border-gray-light;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .job-doc {
+            &__desc {
+                position: relative;
+                cursor: pointer;
+
+                &__icon {
+                    position: relative;
+                    color: $blue;
+                }
+
+                &__text {
+                    position: absolute;
+                    top: -3.5rem;
+                    left: 50%;
+                    z-index: 99;
+                    background: $white;
+                    border-radius: 2px;
+                    box-shadow: 0 0 2px rgba($black, 0.4);
+                    font-family: $font-family;
+                    font-size: 14px;
+                    font-weight: 400;
+                    opacity: 0;
+                    padding: 5px 12px;
+                    text-indent: 0;
+                    visibility: hidden;
+                    white-space: nowrap;
+                    transform: translate(-50%, 0);
+                }
+
+                &:hover {
+                    & > .job-doc__desc__text {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+
+        .mat-expansion-panel.mat-expanded {
+            position: relative;
+            background: rgba($error, 0.05);
+            padding-bottom: 5rem;
+
+            .mat-expansion-panel-header {
+                margin-bottom: 6.5rem !important;
+            }
+
+            &::before,
+            &::after {
+                position: absolute;
+                top: 7rem;
+                width: 100%;
+                color: $error;
+                content: 'This is an expired job posting archived for informational purposes only.';
+                display: block;
+                text-align: center;
+            }
+
+            &::after {
+                top: auto;
+                bottom: 3rem;
+            }
+        }
+    }
+}

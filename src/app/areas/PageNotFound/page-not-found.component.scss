@@ -1,0 +1,26 @@
+@import 'src/styles/utility';
+
+.card {
+    width: 48rem;
+    max-width: 80%;
+    margin: 8rem auto;
+}
+
+.PageNotFound {
+    padding: 2rem;
+
+    &__Lock {
+        color: $blue-light;
+        font-size: 9rem;
+        padding-right: 3rem;
+    }
+
+    h1,
+    h2 {
+        margin: 0;
+    }
+
+    p {
+        margin-top: 0;
+    }
+}

@@ -1,0 +1,40 @@
+.tooltip {
+    position: relative;
+    cursor: pointer;
+
+    &--hidden {
+        .tooltip {
+            &__text {
+                display: inline-block;
+                text-indent: -9999rem;
+            }
+        }
+    }
+
+    &::before {
+        position: absolute;
+        top: -0.7rem;
+        left: -100%;
+        z-index: 99;
+        background: $white;
+        border-radius: 2px;
+        box-shadow: 0 0 2px rgba($black, 0.4);
+        content: attr(data-tooltip);
+        font-family: $font-family;
+        font-size: 14px;
+        font-weight: 400;
+        opacity: 0;
+        padding: 5px 12px;
+        text-indent: 0;
+        visibility: hidden;
+        white-space: nowrap;
+        transform: translate(-100%, 0);
+    }
+
+    &:hover {
+        &::before {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

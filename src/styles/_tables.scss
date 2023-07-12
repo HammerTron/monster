@@ -1,0 +1,94 @@
+@import 'src/styles/utility';
+
+table {
+    // background-color: $table-bg;
+}
+
+th {
+    text-align: left;
+}
+
+// Baseline styles
+table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 4px;
+    // Cells
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            height: auto;
+
+            > th,
+            > td,
+            .mat-cell,
+            .mat-footer-cell,
+            .mat-header-cell {
+                border-top: 1px solid $border-gray-light;
+                border-bottom: 0;
+                font-size: 1.3rem;
+                line-height: 1;
+                vertical-align: top;
+                vertical-align: middle;
+                white-space: nowrap;
+
+                &--first-cell {
+                    padding-left: 0 !important;
+                }
+
+                &--center {
+                    text-align: center;
+
+                    .mat-sort-header-container {
+                        justify-content: center;
+                    }
+                }
+
+                &--right {
+                    text-align: right;
+                }
+            }
+
+            .mat-header-cell {
+                font-size: 1.2rem;
+            }
+        }
+    }
+    // Bottom align for column headings
+    > thead > tr > th {
+        border-bottom: 2px solid $border-gray;
+        vertical-align: bottom;
+    }
+    // Remove top border from thead by default
+    > caption + thead,
+    > colgroup + thead,
+    > thead:first-child {
+        > tr:first-child {
+            > th,
+            > td {
+                border-top: 0;
+            }
+        }
+    }
+    // Account for multiple tbody instances
+    > tbody + tbody {
+        border-top: 2px solid $border-gray-light;
+    }
+
+    // Nesting
+    .table {
+        //background-color: $body-bg;
+    }
+}
+
+.NoResults {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 2rem;
+    padding: 2rem 0;
+    text-align: center;
+}

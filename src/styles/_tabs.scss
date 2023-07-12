@@ -1,0 +1,31 @@
+.mat-tab-group {
+    overflow: visible;
+
+    &.mat-primary {
+        .mat-ink-bar {
+            background-color: $blue;
+        }
+    }
+
+    .mat-tab-body-wrapper {
+        .mat-tab-body {
+            .mat-tab-body-content {
+                overflow: visible;
+            }
+
+            &.mat-tab-body-active {
+                overflow: visible;
+            }
+        }
+    }
+
+    .mat {
+        &-tab {
+            &-label {
+                &-active {
+                    background: rgba($bg-gray, 1);
+                }
+            }
+        }
+    }
+}

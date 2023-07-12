@@ -44,7 +44,7 @@ export class StandardHttpInterceptor implements HttpInterceptor {
         // multipart/form-data
         if (contentType === 'multipart/form-data') {
             // null contentType so nothing is appended to the request headers below
-            contentType = null;
+            contentType = '';
         }
 
         let authToken: string = '';

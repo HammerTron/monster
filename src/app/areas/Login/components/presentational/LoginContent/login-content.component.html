@@ -1,0 +1,44 @@
+<div class="LoginContent">
+    <div id="container">
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name">{{ 'global.TITLE' | translate }}</h1>
+            </div>
+        </div>
+        <div id="content" class="colM">
+            <div id="content-main">
+                <form [formGroup]="loginForm">
+                    <div class="form-row">
+                        <label class="required" for="id_username">{{ 'login.USERNAME' | translate }}:</label>
+                        <input
+                            type="text"
+                            autofocus
+                            autocapitalize="none"
+                            autocomplete="username"
+                            maxlength="150"
+                            required
+                            id="id_username"
+                            [formControl]="usernameInput"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <label class="required" for="id_password">{{ 'login.PASSWORD' | translate }}:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            autocomplete="current-password"
+                            required
+                            id="id_password"
+                            [formControl]="passwordInput"
+                        />
+                    </div>
+
+                    <div class="submit-row">
+                        <input type="submit" value="Log in" class="Button" (click)="onSubmitLoginInfo()" />
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

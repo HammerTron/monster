@@ -1,0 +1,388 @@
+@import 'src/styles/utility';
+
+label {
+    max-width: 100%;
+    display: inline-block;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+input {
+    &[type='file'] {
+        display: block;
+        padding: 1rem 0;
+    }
+}
+
+mat-label {
+    color: $text-gray;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+
+    & + {
+        .mat-radio-group {
+            margin-top: 1rem;
+        }
+    }
+}
+
+.application-type {
+    position: fixed;
+    top: 7.8rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: none !important;
+    justify-content: center;
+
+    &.Show {
+        display: flex !important;
+    }
+
+    &::after {
+        position: fixed;
+        top: 7.8rem;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: $blue;
+        content: '';
+        opacity: 0.8;
+    }
+
+    .FormItem {
+        position: relative;
+        top: calc(50% - 7.8rem);
+        z-index: 2;
+        width: 20rem;
+        height: 20rem;
+        background: $white;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 3rem rgba($black, 0.4);
+        cursor: pointer;
+        margin: -10rem 1.5rem 0 1.5rem;
+        padding: 2rem;
+        transition: margin-top 0.2s ease-in-out;
+
+        &:hover {
+            margin-top: -10.6rem;
+        }
+
+        &__Label {
+            color: $blue;
+            font-size: 3.5rem;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+        }
+
+        &--Radio {
+            .mat-radio {
+                &-button {
+                    padding: 0;
+
+                    .mat-radio-label {
+                        padding: 0;
+
+                        .mat-radio-container {
+                            display: none;
+                        }
+
+                        .mat-radio-label-content {
+                            left: 0;
+                            width: 100%;
+                            padding: 0;
+                            padding: 0 1.5rem;
+                            text-align: center;
+                            white-space: break-spaces;
+                        }
+                    }
+                }
+
+                &-checked {
+                }
+            }
+        }
+    }
+}
+
+.FormItem {
+    // display: inline-block;
+}
+
+.FormGroup {
+    &--InlineRadios {
+        @extend %clear;
+
+        .FormItem {
+            float: left;
+            margin-right: 20px;
+        }
+    }
+}
+
+.mat {
+    &-radio {
+        &-button {
+            padding-right: 2rem;
+        }
+
+        &-group {
+            display: block;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &-checkbox {
+        display: block;
+        margin-bottom: 2rem;
+
+        &.ng-invalid {
+            .mat-checkbox-frame {
+                border-color: red;
+            }
+        }
+    }
+}
+
+.mat-form-field {
+    display: block;
+
+    &.last-field {
+        .mat-form-field-wrapper {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float
+    .mat-input-server:focus
+    + .mat-form-field-label-wrapper
+    .mat-form-field-label,
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-2.1rem) scale(0.75);
+    transform: translateY(-2.1rem) scale(0.75) perspective(100px) translateZ(0.001px);
+
+    mat-label,
+    span {
+        background: $white;
+        display: inline;
+        padding: 0 0.5rem;
+    }
+}
+
+.mat-form-field {
+    &-invalid {
+        .mat-form-field-infix {
+            border-color: $error !important;
+        }
+    }
+
+    &.mat-focused {
+        .mat-form-field-label {
+            color: $blue;
+        }
+
+        .mat-form-field-ripple {
+            background-color: $blue;
+        }
+    }
+
+    &.hide-placeholder {
+        .mat-form-field-label {
+            top: 2.4rem !important;
+        }
+
+        &.mat-form-field-should-float {
+            .mat-form-field-label {
+                background: none;
+                color: transparent;
+                transition: none !important;
+
+                span {
+                    background: none;
+                    transition: none !important;
+                }
+            }
+        }
+    }
+
+    &-wrapper {
+        .mat-form-field-appearance-legacy & {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &-infix {
+        .mat-form-field-appearance-legacy & {
+            position: relative;
+            width: 45rem;
+            min-width: 0;
+            border: $border-gray-light solid 1px;
+            border-radius: 3px;
+            color: $text-black;
+            display: block;
+            flex: auto;
+            padding: 1.5rem;
+
+            .mat-select-value-text,
+            .mat-input-element {
+                position: relative;
+                top: 2px;
+            }
+
+            .FormBody & {
+                width: 45rem;
+            }
+        }
+
+        .mat-form-field-label-wrapper {
+            label {
+                &.mat-form-field-label {
+                    top: 2.8rem;
+                    left: 1rem;
+
+                    .mat-placeholder-required {
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
+
+    .mat-form-field-underline {
+        display: none;
+    }
+
+    .mat-select-value {
+        color: $text-black;
+    }
+
+    &.small {
+        .mat-form-field {
+            &-infix {
+                font-size: 1.2rem;
+                padding: 1.2rem 1.5rem;
+            }
+        }
+    }
+}
+
+.uploaded-file {
+    background: rgba($border-gray-light, 0.5);
+    border: $border-gray-light 1px solid;
+    border-radius: 3px;
+    display: inline-flex;
+    padding: 1rem 2rem;
+
+    &__label {
+        padding-right: 2rem;
+    }
+
+    &__remove {
+        padding-left: 1.5rem;
+
+        .fa {
+            transition: color 0.2s ease-in-out;
+
+            &:hover {
+                color: $error;
+            }
+        }
+    }
+}
+
+.field-small {
+    &.mat-form-field {
+        &.mat-form-field-appearance-legacy {
+            .mat-form-field {
+                &-wrapper {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+
+                &-infix {
+                    padding: 1rem;
+
+                    .mat-form-field-label-wrapper {
+                        label {
+                            &.mat-form-field-label {
+                                top: 2.2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mat-form-field-label {
+    top: 27px;
+    left: 15px;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple,
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $blue;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $blue;
+}
+
+.mat-slide-toggle {
+    &.mat-checked {
+        .mat-slide-toggle-bar {
+            background-color: $green !important;
+
+            .mat-slide-toggle-thumb-container {
+                transform: translate3d(14px, 0, 0) !important;
+            }
+
+            .mat-slide-toggle-thumb {
+                background: $white;
+            }
+        }
+    }
+
+    .mat-slide-toggle-label {
+        .mat-slide-toggle-bar {
+            width: 3.5rem;
+            height: 2rem;
+            background-color: #bbb;
+            border-radius: 4rem;
+
+            .mat-slide-toggle-thumb-container {
+                top: 0.4rem;
+                left: 0.4rem;
+                width: 1.2rem;
+                height: 1.2rem;
+
+                .mat-slide-toggle-thumb {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                    box-shadow: none;
+                }
+
+                .mat-ripple {
+                    display: none !important;
+                }
+            }
+        }
+    }
+}

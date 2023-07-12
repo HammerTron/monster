@@ -1,0 +1,47 @@
+.inline-block {
+    display: inline-block;
+}
+
+.caps {
+    text-transform: capitalize;
+}
+
+.clear {
+    clear: both;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.hide-visually {
+    position: absolute;
+    top: -999rem;
+    left: -999rem;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+%clear {
+    &::after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+.clearfix {
+    @extend %clear;
+}
+
+@for $i from 1 through 50 {
+    .pb- {
+        padding-bottom: $i + 'px';
+    }
+}

@@ -1,0 +1,112 @@
+@import 'src/styles/utility';
+.Spinner {
+    background-color: #6b6b6b; // $dimGray;
+
+    opacity: 0.3;
+
+    transition: all 0.5s linear;
+
+    ::after {
+        position: relative;
+
+        content: ' Loading...';
+
+        text-align: center;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ball-one {
+    0% {
+        transform: translate(20%, 20%);
+    }
+
+    50% {
+        transform: translate(25%, 0%);
+    }
+
+    100% {
+        transform: translate(20%, 20%);
+    }
+}
+
+@keyframes ball-two {
+    0% {
+        transform: translate(20%, 20%);
+    }
+
+    50% {
+        transform: translate(50%, 50%);
+    }
+
+    100% {
+        transform: translate(20%, 20%);
+    }
+}
+
+@keyframes ball-three {
+    0% {
+        transform: translate(20%, 20%);
+    }
+
+    50% {
+        transform: translate(0%, 50%);
+    }
+
+    100% {
+        transform: translate(20%, 20%);
+    }
+}
+
+.Loading {
+    position: relative;
+    width: 37px;
+    height: 37px;
+    margin: 50px auto;
+    animation: spin 1.5s infinite linear;
+
+    &__Text {
+        margin-top: -40px;
+    }
+
+    &__Icon {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: rgba(#417690, 0.3);
+        border-radius: 50%;
+
+        &:nth-child(1) {
+            animation: ball-one 1.5s infinite linear;
+        }
+
+        &:nth-child(2) {
+            animation: ball-two 1.5s infinite linear;
+        }
+
+        &:nth-child(3) {
+            animation: ball-three 1.5s infinite linear;
+        }
+    }
+}

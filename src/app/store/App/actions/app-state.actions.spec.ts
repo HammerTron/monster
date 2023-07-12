@@ -12,7 +12,7 @@ import { LoginService } from '../../../areas/Login/services/Login/login.service'
 import { MockLoginService } from '../../../testing/mocks/services/login.service.mock';
 import { MockToastrService } from '../../../testing/mocks/services/toastr.service.mock';
 
-import { AppBusy, AppIdle, AppStateActions, CancelFileUpload } from './app-state.actions';
+import { AppBusy, AppIdle, AppStateActions } from './app-state.actions';
 
 describe('Action: AppStateActions', () => {
     let serviceToTest: AppStateActions, store: Store<IAppStore>;
