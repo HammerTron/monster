@@ -15,12 +15,17 @@ export const AppIdle: any = createAction('[App] Idle');
 export const AppKillLoading: any = createAction('[App] Kill Loading');
 export const submitFlightInfo: any = createAction('[App: Flight] Submit Flight Info', props<{ FlightInfoPayload: IFlightInfoPayload }>());
 
-export const UpdateUsernameText: any = createAction('[App: Login] Update Username', props<{ username: string }>());
-export const UpdatePasswordText: any = createAction('[App: Login] Update Password', props<{ password: string }>());
-
-
 @Injectable()
 export class AppStateActions {
+    static APP_BUSY: string = 'APPLICATION_BUSY';
+    static APP_IDLE: string = 'APPLICATION_IDLE';
+    static APP_DISABLE_BUSY: string = 'APP_DISABLE_BUSY';
+    static APP_TOGGLE_IS_POPPED: string = 'APP_TOGGLE_IS_POPPED';
+    static APP_KILL_LOADING: string = 'APP_KILL_LOADING';
+    static APP_UPDATE_USERNAME: string = 'APP_UPDATE_USERNAME';
+    static APP_UPDATE_PASSWORD: string = 'APP_UPDATE_PASSWORD';
+    static APP_SET_AUTHENTICATED: string = 'APP_SET_AUTHENTICATED';
+
     constructor(
         private readonly store: Store<IAppStore>,
         private readonly appStateSelectors: AppStateSelectors,
@@ -73,15 +78,23 @@ export class AppStateActions {
      * @description updates state for username.
      * @param {username} string
      */
-    updateUsernameText: (username: string) => void = (username: string) =>
-        this.store.dispatch(UpdateUsernameText({ username }));
+    updateUsernameText(username: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_USERNAME,
+            payload: username
+        });
+    }
 
     /**
      * @description updates state for password.
      * @param {password} string
      */
-    updatePasswordText: (password: string) => void = (password: string) =>
-        this.store.dispatch(UpdatePasswordText({ password }));
+    updatePasswordText(password: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_PASSWORD,
+            payload: password
+        });
+    }
 
     /**
      * @description Connects to the login service and communicates a login event.
@@ -94,15 +107,27 @@ export class AppStateActions {
             password,
         });
 
-        this.loginService.doLogin(login).subscribe(
-            (response: any) => {
-                // this.store.dispatch(AppSetAuthToken({ response })); // comment out for actual auth/auth2 or SOAP
-                this.router.navigate(['/Dashboard']);
-            },
-            () => {
-                this.toastr.error('Failure');
-            },
-        );
+        if (username === 'test' && password === '1234') {
+            this.store.dispatch({
+                type: AppStateActions.APP_SET_AUTHENTICATED,
+                payload: true
+            });
+            this.toastr.success('Success');
+            this.router.navigate(['/Flights']);
+        } else {
+            this.toastr.error('Failure');
+        }
+
+        // comment out for now until real login service is available
+        // this.loginService.doLogin(login).subscribe(
+        //     (response: any) => {
+        //         // this.store.dispatch(AppSetAuthToken({ response })); // comment out for actual auth/auth2 or SOAP
+        //         this.router.navigate(['/Dashboard']);
+        //     },
+        //     () => {
+        //         this.toastr.error('Failure');
+        //     },
+        // );
     }
 
     /**
@@ -113,6 +138,10 @@ export class AppStateActions {
 
         this.flightService.submitFlightInfo(flightInfoPayload).subscribe(
             (response: any) => {
+                this.store.dispatch({
+                    type: AppStateActions.APP_UPDATE_PASSWORD,
+                    payload: true
+                });
                 this.toastr.success(response);
             },
             () => {

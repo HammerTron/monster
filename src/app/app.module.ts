@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -16,6 +17,7 @@ import { AppStateSelectors } from './store/App/selectors/app-state.selectors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackendService } from './shared/services/Backend/backend.service';
+import { FlightsModule } from './areas/Flights/flights.module';
 import { FlightService } from './areas/Flights/services/Flight/flight.service';
 import { LoginModule } from './areas/Login/login.module';
 import { LoginService } from './areas/Login/services/Login/login.service';
@@ -42,6 +44,7 @@ StoreDevtoolsModule.instrument({
     declarations: [AppComponent, PageNotFoundComponent, NotAuthorizedComponent],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
 
@@ -74,6 +77,7 @@ StoreDevtoolsModule.instrument({
         AppStateSelectors,
         BackendService,
         FlightService,
+        FlightsModule,
         LoginService,
         // http Interceptor
         {

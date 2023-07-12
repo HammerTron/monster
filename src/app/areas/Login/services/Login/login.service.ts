@@ -28,7 +28,8 @@ export class LoginService {
      * @param {Login} payload
      * @returns {Observable<Login>}
      */
-    doLogin(payload: Login): Observable<string> {
+    
+    doLogin(payload: Login): Observable<Login> {
         const handle: MockRoutes = environment.MOCK_CONFIG.login,
             apiUrl: ApiRoutes = environment.API_CONFIG.login;
 

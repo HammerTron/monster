@@ -15,6 +15,6 @@ export class Login extends LOGIN {
         super(values);
     }
 
-    username: string | undefined;
-    password: string | undefined;
+    username: string;
+    password: string;
 }

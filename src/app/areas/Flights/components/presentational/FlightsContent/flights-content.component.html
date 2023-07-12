@@ -1,0 +1,20 @@
+<div class="FlightsContent">
+    <div id="container">
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name">{{ 'global.TITLE' | translate }}</h1>
+            </div>
+        </div>
+        <div id="content" class="colM">
+            <div id="content-main">
+                <form [formGroup]="flightsForm">                    
+
+                    <div class="submit-row">
+                        <input type="submit" value="Log in" class="Button" (click)="onSubmitFlightInfo()" />
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
