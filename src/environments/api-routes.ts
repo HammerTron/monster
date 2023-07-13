@@ -4,8 +4,8 @@ export enum ApiRoutes {
     */
 
     /* login */
-    login = '/admin/login/?next=/admin/',
+    login = '/service/login/?next=/flights/',
 
     /* submitFlightUrl */
-    submitFlightUrl = '/admin/login/?next=/admin/',
+    submitFlightUrl = 'https://us-central1-crm-sdk.cloudfunctions.net/flightInfoChalleng',
 }

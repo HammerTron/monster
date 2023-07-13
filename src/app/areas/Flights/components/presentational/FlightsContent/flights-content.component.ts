@@ -13,25 +13,57 @@ import { filterUndefined } from '../../../../../utils/filter-undefined.util';
 })
 export class FlightsContentComponent {
     constructor(private readonly appActions: AppStateActions) {
-        this.usernameInput = new FormControl('', Validators.minLength(1));
-        this.passwordInput = new FormControl('', Validators.minLength(1));
+        this.airlineInput = new FormControl('', Validators.minLength(1));
+        this.arrivalDate = new FormControl('', Validators.minLength(1));
+        this.arrivalTime = new FormControl('', Validators.minLength(1));
+        this.flightNumber = new FormControl('', Validators.minLength(1));
+        this.guests = new FormControl('', Validators.minLength(1));
+        this.comments = new FormControl('', Validators.minLength(1));
 
         // build Flights Information FormControl group
         this.flightsForm = new FormGroup({
-            usernameInput: this.usernameInput,
-            passwordInput: this.passwordInput,
+            airlineInput: this.airlineInput,
+            arrivalDate: this.arrivalDate,
+            arrivalTime: this.arrivalTime,
+            flightNumber: this.flightNumber,
+            guests: this.guests,
+            comments: this.comments,
         });
 
         // subscribe to any form changes
-        this.usernameInput.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+        this.airlineInput.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
             // emit updated username value event
-            this.appActions.updateUsernameText(value.trim());
+            this.appActions.updateAirlineInput(value.trim());
         });
 
         // subscribe to any form changes
-        this.passwordInput.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+        this.arrivalDate.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
             // emit updated password value event
-            this.appActions.updatePasswordText(value.trim());
+            this.appActions.updateArrivalDate(value.trim());
+        });
+
+        // subscribe to any form changes
+        this.arrivalTime.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+            // emit updated password value event
+            this.appActions.updateArrivalTime(value.trim());
+        });
+
+        // subscribe to any form changes
+        this.flightNumber.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+            // emit updated password value event
+            this.appActions.updateFlightNumber(value.trim());
+        });
+
+        // subscribe to any form changes
+        this.guests.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+            // emit updated password value event
+            this.appActions.updateGuests(value.trim());
+        });
+
+        // subscribe to any form changes
+        this.comments.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+            // emit updated password value event
+            this.appActions.updateComments(value.trim());
         });
     }
 
@@ -43,17 +75,37 @@ export class FlightsContentComponent {
     /**
      * username input field
      */
-    usernameInput: FormControl;
+    airlineInput: FormControl;
 
     /**
-     * password input field
+     * arrivalDate input field
      */
-    passwordInput: FormControl;
+    arrivalDate: FormControl;
+
+    /**
+     * arrivalTime input field
+     */
+    arrivalTime: FormControl;
+
+    /**
+     * flightNumber input field
+     */
+    flightNumber: FormControl;
+
+    /**
+     * guests input field
+     */
+    guests: FormControl;
+
+    /**
+     * comments input field
+     */
+    comments: FormControl;
 
     /**
      * event handler for submit user flights info event
      */
     onSubmitFlightInfo() {
-        // this.appActions.submitFlightInfo(this.usernameInput.value, this.passwordInput.value);
+        this.appActions.submitFlightInfo();
     }
 }

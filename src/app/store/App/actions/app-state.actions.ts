@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createAction, props, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs/operators';
 
 import { IAppStore } from '../../app-store';
 import { AppStateSelectors } from '../selectors/app-state.selectors';
 import { Login } from '../types/login.model';
 import { LoginService } from '../../../areas/Login/services/Login/login.service';
-import { IFlightInfoPayload, FlightInfoPayload } from '../types/flightInfoPayload';
+import { IFlightInfo, FlightInfo } from '../types/flight-info';
 import { FlightService } from '../../../areas/Flights/services/Flight/flight.service';
 
 export const AppBusy: any = createAction('[App] Busy');
 export const AppIdle: any = createAction('[App] Idle');
 export const AppKillLoading: any = createAction('[App] Kill Loading');
-export const submitFlightInfo: any = createAction('[App: Flight] Submit Flight Info', props<{ FlightInfoPayload: IFlightInfoPayload }>());
+export const submitFlightInfo: any = createAction('[App: Flight] Submit Flight Info', props<{ FlightInfo: IFlightInfo }>());
 
 @Injectable()
 export class AppStateActions {
@@ -25,6 +26,12 @@ export class AppStateActions {
     static APP_UPDATE_USERNAME: string = 'APP_UPDATE_USERNAME';
     static APP_UPDATE_PASSWORD: string = 'APP_UPDATE_PASSWORD';
     static APP_SET_AUTHENTICATED: string = 'APP_SET_AUTHENTICATED';
+    static APP_UPDATE_AIRLINE: string = 'APP_UPDATE_AIRLINE';
+    static APP_UPDATE_ARRIVAL_DATE: string = 'APP_UPDATE_ARRIVAL_DATE';
+    static APP_UPDATE_ARRIVAL_TIME: string = 'APP_UPDATE_ARRIVAL_TIME';
+    static APP_UPDATE_FLIGHT: string = 'APP_UPDATE_FLIGHT';
+    static APP_UPDATE_GUESTS: string = 'APP_UPDATE_GUESTS';
+    static APP_UPDATE_COMMENTS: string = 'APP_UPDATE_COMMENTS';
 
     constructor(
         private readonly store: Store<IAppStore>,
@@ -131,22 +138,89 @@ export class AppStateActions {
     }
 
     /**
-     * @description Connects to the login service and communicates a login event.
-     * @param {FlightInfoPayload} flightInfoPayload
+     * @description updates state for airline.
+     * @param {airline} string
      */
-    submitFlightInfo(flightInfoPayload: FlightInfoPayload) {
+    updateAirlineInput(airline: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_AIRLINE,
+            payload: airline
+        });
+    }
 
-        this.flightService.submitFlightInfo(flightInfoPayload).subscribe(
-            (response: any) => {
-                this.store.dispatch({
-                    type: AppStateActions.APP_UPDATE_PASSWORD,
-                    payload: true
-                });
-                this.toastr.success(response);
-            },
-            () => {
-                this.toastr.error('Failure');
-            },
-        );
+    /**
+     * @description updates state for arrival date.
+     * @param {arrivalDate} string
+     */
+    updateArrivalDate(arrivalDate: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_ARRIVAL_DATE,
+            payload: arrivalDate
+        });
+    }
+
+    /**
+     * @description updates state for arrival time.
+     * @param {arrivalTime} string
+     */
+    updateArrivalTime(arrivalDate: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_ARRIVAL_TIME,
+            payload: arrivalDate
+        });
+    }
+
+    /**
+     * @description updates state for flight number.
+     * @param {flightNumber} string
+     */
+    updateFlightNumber(flightNumber: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_FLIGHT,
+            payload: flightNumber
+        });
+    }
+
+    /**
+     * @description updates state for number of guests.
+     * @param {guests} string
+     */
+    updateGuests(guests: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_GUESTS,
+            payload: guests
+        });
+    }
+
+    /**
+     * @description updates state for comments.
+     * @param {comments} string
+     */
+    updateComments(comments: string) : void {
+        this.store.dispatch({
+            type: AppStateActions.APP_UPDATE_COMMENTS,
+            payload: comments
+        });
+    }
+
+    /**
+     * @description Connects to the flight service and communicates a flight info event.
+     */
+    submitFlightInfo() {
+        this.appStateSelectors.flightInfo$.pipe(first()).subscribe((flightInfo: any) => {
+            this.flightService.submitFlightInfo(flightInfo).subscribe(
+                (response: any) => {
+                    // this.store.dispatch({
+                    //     type: AppStateActions.APP_UPDATE_PASSWORD,
+                    //     payload: true
+                    // });
+                    this.toastr.success(response);
+                },
+                () => {
+                    this.toastr.error('Failure');
+                },
+            );            
+        });
+
     }
 }

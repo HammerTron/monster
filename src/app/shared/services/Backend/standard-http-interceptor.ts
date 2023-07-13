@@ -49,7 +49,7 @@ export class StandardHttpInterceptor implements HttpInterceptor {
 
         let authToken: string = '';
 
-        // this.appSelectors.authToken.pipe(first()).subscribe((value: string) => (authToken = value));
+        this.appSelectors.authToken$.pipe(first()).subscribe((value: string) => (authToken = value));
 
         /**
          * set a custom header on all HTTP requests.
@@ -66,7 +66,8 @@ export class StandardHttpInterceptor implements HttpInterceptor {
             headers: new HttpHeaders()
                 .set('X-Requested-With', 'XMLHttpRequest')
                 .set('Accept', acceptType)
-                .set('Authorization', authToken),
+                .set('Authorization', authToken)
+                .set('token', authToken),
         });
 
         // is there a clientId associated with a KeyCloak auth session?

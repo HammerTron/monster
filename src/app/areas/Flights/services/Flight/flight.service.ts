@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ApiRoutes } from '../../../../../environments/api-routes';
-import { FlightInfoPayload } from '../../../../store/App/types/flightInfoPayload';
+import { FlightInfo } from '../../../../store/App/types/flight-info';
 import { environment } from '../../../../../environments/environment';
 import { MockRoutes } from '../../../../../environments/mock-routes';
 import { BackendService } from '../../../../shared/services/Backend/backend.service';
@@ -24,10 +24,10 @@ export class FlightService {
 
     /**
      * @description submit the current users login data
-     * @param {FlightInfoPayload} payload
-     * @returns {Observable<FlightInfoPayload>}
+     * @param {FlightInfo} payload
+     * @returns {Observable<FlightInfo>}
      */
-    submitFlightInfo(payload: FlightInfoPayload): Observable<string> {
+    submitFlightInfo(payload: FlightInfo): Observable<string> {
         const handle: MockRoutes = environment.MOCK_CONFIG.submitFlightInfo,
             apiUrl: ApiRoutes = environment.API_CONFIG.submitFlightUrl;
 

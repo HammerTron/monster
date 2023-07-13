@@ -48,7 +48,31 @@ export const APP_STATE_REDUCER: (state: AppState, action: any) => AppState = (
         break;
     case AppStateActions.APP_SET_AUTHENTICATED:
         state = state.set('authenticated', action.payload) as AppState;
-        
+
+        break;
+    case AppStateActions.APP_UPDATE_AIRLINE:
+        state = state.setIn(['flightInfo', 'airline'], action.payload) as AppState;
+
+        break;
+    case AppStateActions.APP_UPDATE_ARRIVAL_DATE:
+        state = state.setIn(['flightInfo', 'arrivalDate'], action.payload) as AppState;
+
+        break;
+    case AppStateActions.APP_UPDATE_ARRIVAL_TIME:
+        state = state.setIn(['flightInfo', 'arrivalTime'], action.payload) as AppState;
+
+        break;
+    case AppStateActions.APP_UPDATE_FLIGHT:
+        state = state.setIn(['flightInfo', 'flightNumber'], action.payload) as AppState;
+
+        break;
+    case AppStateActions.APP_UPDATE_GUESTS:
+        state = state.setIn(['flightInfo', 'numOfGuests'], action.payload) as AppState;
+
+        break;
+    case AppStateActions.APP_UPDATE_COMMENTS:
+        state = state.setIn(['flightInfo', 'comments'], action.payload) as AppState;
+
         break;
     default:
         return state;

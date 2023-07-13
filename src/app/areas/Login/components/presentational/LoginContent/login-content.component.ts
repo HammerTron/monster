@@ -37,16 +37,19 @@ export class LoginContentComponent {
 
     /**
      * Object contains form group
+     * @type {FormGroup}
      */
     loginForm: FormGroup;
 
     /**
      * username input field
+     * @type {FormControl}
      */
     usernameInput: FormControl;
 
     /**
      * password input field
+     * @type {FormControl}
      */
     passwordInput: FormControl;
 

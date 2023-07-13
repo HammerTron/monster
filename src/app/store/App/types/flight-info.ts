@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
 
-export interface IFlightInfoPayload {
+export interface IFlightInfo {
     airline: string;
     arrivalDate: string;
     arrivalTime: string;
@@ -18,8 +18,8 @@ export const FLIGHT_INFO_PAYLOAD: any = Record({
     comments: '',
 });
 
-export class FlightInfoPayload extends FLIGHT_INFO_PAYLOAD {
-    constructor(values?: Partial<IFlightInfoPayload>) {
+export class FlightInfo extends FLIGHT_INFO_PAYLOAD {
+    constructor(values?: Partial<IFlightInfo>) {
         super(values);
     }
 
