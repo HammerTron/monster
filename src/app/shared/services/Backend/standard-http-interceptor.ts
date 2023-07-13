@@ -66,7 +66,6 @@ export class StandardHttpInterceptor implements HttpInterceptor {
             headers: new HttpHeaders()
                 .set('X-Requested-With', 'XMLHttpRequest')
                 .set('Accept', acceptType)
-                .set('Authorization', authToken)
                 .set('token', authToken),
         });
 

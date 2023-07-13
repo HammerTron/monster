@@ -163,10 +163,10 @@ export class AppStateActions {
      * @description updates state for arrival time.
      * @param {arrivalTime} string
      */
-    updateArrivalTime(arrivalDate: string) : void {
+    updateArrivalTime(arrivalTime: string) : void {
         this.store.dispatch({
             type: AppStateActions.APP_UPDATE_ARRIVAL_TIME,
-            payload: arrivalDate
+            payload: arrivalTime
         });
     }
 
