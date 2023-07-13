@@ -55,32 +55,32 @@ describe('Component: FlightsContentComponent', () => {
     });
 
     // test definitions
-    xit('usernameInput.valueChanges should dispatch expected actions', () => {
-        // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
-        spyOn(mockAppStateActions, 'updateUsernameText');
-        // trigger the form submit
-        compInstance.usernameInput.setValue('username');
-        expect(mockAppStateActions.updateUsernameText).toHaveBeenCalled();
-    });
+    // xit('usernameInput.valueChanges should dispatch expected actions', () => {
+    //     // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
+    //     spyOn(mockAppStateActions, 'updateUsernameText');
+    //     // trigger the form submit
+    //     compInstance.usernameInput.setValue('username');
+    //     expect(mockAppStateActions.updateUsernameText).toHaveBeenCalled();
+    // });
 
-    // test definitions
-    xit('passwordInput.valueChanges should dispatch expected actions', () => {
-        // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
-        spyOn(mockAppStateActions, 'updatePasswordText');
-        // trigger the form submit
-        compInstance.passwordInput.setValue('password');
-        expect(mockAppStateActions.updatePasswordText).toHaveBeenCalled();
-    });
+    // // test definitions
+    // xit('passwordInput.valueChanges should dispatch expected actions', () => {
+    //     // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
+    //     spyOn(mockAppStateActions, 'updatePasswordText');
+    //     // trigger the form submit
+    //     compInstance.passwordInput.setValue('password');
+    //     expect(mockAppStateActions.updatePasswordText).toHaveBeenCalled();
+    // });
 
-    // test definitions
-    xit('FnSubmitflightsInfo method should dispatch expected actions', () => {
-        // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
-        // this.usernameInput.value
-        spyOn(mockAppStateActions, 'FubmitflightsInfo');
-        // trigger the form submit
-        compInstance.FnSubmitflightsInfo();
-        expect(mockAppStateActions.FubmitflightsInfo).toHaveBeenCalled();
-    });
+    // // test definitions
+    // xit('FnSubmitflightsInfo method should dispatch expected actions', () => {
+    //     // arrange the test using spyOn(); would otherwise use subscribe if we needed to inspect the event itself
+    //     // this.usernameInput.value
+    //     spyOn(mockAppStateActions, 'FubmitflightsInfo');
+    //     // trigger the form submit
+    //     compInstance.FnSubmitflightsInfo();
+    //     expect(mockAppStateActions.FubmitflightsInfo).toHaveBeenCalled();
+    // });
 
     afterAll(() => {
         // reinstate resetTestingModule method
