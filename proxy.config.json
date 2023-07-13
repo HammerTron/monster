@@ -1,0 +1,14 @@
+{
+  "/": {
+    "target": "https://us-central1-crm-sdk.cloudfunctions.net/",
+    "changeOrigin": true,
+    "https": true,
+    "secure": false,
+    "rejectUnauthorized": false,
+    "headers": {
+      "Origin": "https://us-central1-crm-sdk.cloudfunctions.net",
+      "Referrer": "https://us-central1-crm-sdk.cloudfunctions.net/"
+    },
+    "logLevel": "debug"
+  },
+}
