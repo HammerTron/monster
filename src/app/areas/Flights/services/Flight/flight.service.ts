@@ -31,8 +31,6 @@ export class FlightService {
         const handle: MockRoutes = environment.MOCK_CONFIG.submitFlightInfo,
             apiUrl: ApiRoutes = environment.API_CONFIG.submitFlightUrl;
 
-            console.log(payload)
-
         return this.backendService
             .post(apiUrl, handle, FLIGHT_MOCK, payload)
             .pipe(map((response: any) => response ));

@@ -1,8 +1,7 @@
 {
-  "/api/": {
-    "target": "https://us-central1-crm-sdk.cloudfunctions.net/",
+  "/": {
+    "target": "http://localhost:4200/",
     "changeOrigin": true,
-    "https": true,
     "secure": false,
     "rejectUnauthorized": false,
     "headers": {
@@ -10,7 +9,8 @@
       "Referrer": "https://us-central1-crm-sdk.cloudfunctions.net/"
     },
     "pathRewrite": {
-      "^/api/": ""
+      "^/flightInfoChalleng": "https://us-central1-crm-sdk.cloudfunctions.net/flightInfoChallenge"
     },
     "logLevel": "debug"
-  },
+  },  
+}
