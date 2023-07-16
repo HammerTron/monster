@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,12 +11,20 @@ import { NotAuthorizedComponent } from './components/NotAuthorized/not-authorize
 import { TravelSubmissionComponent } from './components/TravelSubmission/travel-submission.component';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ToastrModule.forRoot(), TranslateModule],
+    imports: [
+        BsDatepickerModule.forRoot(),
+        CommonModule, FormsModule, 
+        RouterModule, 
+        ReactiveFormsModule, 
+        ToastrModule.forRoot(), 
+        TranslateModule
+    ],
     declarations: [PageLoadingOverlayComponent, NotAuthorizedComponent, TravelSubmissionComponent],
     exports: [
-        PageLoadingOverlayComponent,
+        BsDatepickerModule,
         CommonModule,
         FormsModule,
+        PageLoadingOverlayComponent,
         RouterModule,
         ReactiveFormsModule,
         ToastrModule,

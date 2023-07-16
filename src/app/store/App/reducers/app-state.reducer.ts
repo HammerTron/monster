@@ -46,6 +46,10 @@ export const APP_STATE_REDUCER: (state: AppState, action: any) => AppState = (
         state = state.setIn(['login', 'password'], action.payload) as AppState;
 
         break;
+    case AppStateActions.APP_SET_AUTH:
+        state = state.set('authToken', action.payload) as AppState;
+
+        break;
     case AppStateActions.APP_SET_AUTHENTICATED:
         state = state.set('authenticated', action.payload) as AppState;
 

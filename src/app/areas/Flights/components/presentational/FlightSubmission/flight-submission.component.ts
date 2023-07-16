@@ -7,12 +7,12 @@ import { AppStateActions } from '../../../../../store/App/actions/app-state.acti
 import { filterUndefined } from '../../../../../utils/filter-undefined.util';
 
 @Component({
-    selector: 'flights-content',
-    templateUrl: './flights-content.component.html',
-    styleUrls: ['./flights-content.component.scss'],
+    selector: 'flight-content',
+    templateUrl: './flight-submission.component.html',
+    styleUrls: ['./flight-submission.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlightsContentComponent {
+export class FlightSubmissionComponent {
     constructor(private readonly appActions: AppStateActions) {
         this.airlineInput = new FormControl('', Validators.minLength(1));
         this.arrivalAmPm = new FormControl('', Validators.minLength(1));

@@ -9,8 +9,10 @@ export const APP_TRANSLATIONS: any = {
     },
     flights: {
         FLIGHT_INFO: 'Flight Info',
+        FLIGHT_SUBMISSION: 'Flight Submission',
         FLIGHT_SUBMISSION_FORM: 'Flight Submission Form',
         AIRLINE: 'Airline',
+        AM_PM: 'AM/PM',
         ARRIVAL_DATE: 'Arrival Date',
         ARRIVAL_TIME: 'Arrival Time',
         FLIGHT_NUMBER: 'Flight Number',

@@ -25,6 +25,7 @@ export class AppStateActions {
     static APP_KILL_LOADING: string = 'APP_KILL_LOADING';
     static APP_UPDATE_USERNAME: string = 'APP_UPDATE_USERNAME';
     static APP_UPDATE_PASSWORD: string = 'APP_UPDATE_PASSWORD';
+    static APP_SET_AUTH: string = 'APP_SET_AUTH';
     static APP_SET_AUTHENTICATED: string = 'APP_SET_AUTHENTICATED';
     static APP_UPDATE_AIRLINE: string = 'APP_UPDATE_AIRLINE';
     static APP_UPDATE_ARRIVAL_DATE: string = 'APP_UPDATE_ARRIVAL_DATE';
@@ -114,27 +115,24 @@ export class AppStateActions {
             password,
         });
 
-        if (username === 'test' && password === '1234') {
-            this.store.dispatch({
-                type: AppStateActions.APP_SET_AUTHENTICATED,
-                payload: true
-            });
-            this.toastr.success('Success');
-            this.router.navigate(['/Flights']);
-        } else {
-            this.toastr.error('Failure');
-        }
+        this.loginService.doLogin(login).subscribe(
+            (response: any) => {
+                this.store.dispatch({
+                    type: AppStateActions.APP_SET_AUTH,
+                    payload: response.token
+                });
 
-        // comment out for now until real login service is available
-        // this.loginService.doLogin(login).subscribe(
-        //     (response: any) => {
-        //         // this.store.dispatch(AppSetAuthToken({ response })); // comment out for actual auth/auth2 or SOAP
-        //         this.router.navigate(['/Dashboard']);
-        //     },
-        //     () => {
-        //         this.toastr.error('Failure');
-        //     },
-        // );
+                this.store.dispatch({
+                    type: AppStateActions.APP_SET_AUTHENTICATED,
+                    payload: true
+                });
+
+                this.router.navigate(['/FlightSubmission']);
+            },
+            () => {
+                this.toastr.error('Failure');
+            },
+        );
     }
 
     /**

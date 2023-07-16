@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FlightsModule } from './areas/Flights/flights.module';
 import { LoginModule } from './areas/Login/login.module';
 import { FlightsContainerComponent } from './areas/Flights/components/container/FlightsContainer/flights-container.component';
+import { FlightSubmissionContainer } from './areas/Flights/components/container/FlightSubmissionContainer/flight-submission-container.component';
 import { NotAuthorizedComponent } from './areas/NotAuthorized/not-authorized.component';
 import { PageNotFoundComponent } from './areas/PageNotFound/page-not-found.component';
 
@@ -20,7 +20,11 @@ import { PageNotFoundComponent } from './areas/PageNotFound/page-not-found.compo
             },
             {
                 path: 'Flights',
-                loadChildren: () => FlightsModule,
+                component: FlightsContainerComponent,
+            },
+            {
+                path: 'FlightSubmission',
+                component: FlightSubmissionContainer,
             },
 
             /**
