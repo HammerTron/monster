@@ -52,3 +52,7 @@
     @include button-color-hover($gray-800);
     @include button-color-active($gray-800);
 }
+
+button.btn.btn-default.text-center {    
+    color: #0d6efd !important;
+}

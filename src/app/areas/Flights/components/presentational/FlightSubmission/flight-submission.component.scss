@@ -2,7 +2,7 @@
 
 .FlightSubmission {
     // background: #f8f8f8;
-
+    
     #header {
         height: auto;
         background: #417690;
@@ -75,5 +75,9 @@
 
     .password-reset-link {
         text-align: center;
+    }
+
+    .required {
+        color: red;
     }
 }

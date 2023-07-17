@@ -10,6 +10,7 @@ export interface IAppState {
     authToken: string;
     login: ILogin;
     flightInfo: IFlightInfo;
+    isPopped: boolean;
 }
 
 export const APP_STATE: any = Record({
@@ -19,6 +20,7 @@ export const APP_STATE: any = Record({
     authToken: '',
     login: new Login(),
     flightInfo: new FlightInfo(),
+    isPopped: false,
 });
 
 /**
@@ -35,4 +37,5 @@ export class AppState extends APP_STATE {
     authToken: string;
     login: Login;
     flightInfo: FlightInfo;
+    isPopped: boolean;
 }

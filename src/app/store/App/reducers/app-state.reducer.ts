@@ -78,6 +78,10 @@ export const APP_STATE_REDUCER: (state: AppState, action: any) => AppState = (
         state = state.setIn(['flightInfo', 'comments'], action.payload) as AppState;
 
         break;
+    case AppStateActions.APP_TOGGLE_IS_POPPED:
+        state = state.set('isPopped', action.payload) as AppState;
+
+        break;
     default:
         return state;
     }

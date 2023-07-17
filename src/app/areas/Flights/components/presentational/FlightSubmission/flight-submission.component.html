@@ -1,66 +1,67 @@
+
 <div class="FlightSubmission">
-    <div id="container">
-        <div id="header">
-            <div id="branding">
-                <h1 id="site-name">{{ 'flights.FLIGHT_SUBMISSION' | translate }}</h1>
-            </div>
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">{{ 'flights.FLIGHT_SUBMISSION' | translate }}</h1>
         </div>
-        <div class="col-md-9 col-xxl-9 d-flex">
-            <div class="card">
-                <div class="card-header">
-                    <!-- <h5 class="card-title">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h5> -->
-                    <h6 class="card-subtitle text-muted">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h6>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <!-- <h5 class="card-title">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h5> -->
+            <h6 class="card-subtitle text-muted">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h6>
+        </div>
+        <form [formGroup]="flightsForm">
+            <div class="card-body m-sm-3 m-md-5">
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.AIRLINE' | translate }}</label>
+                    <input required minlength="4" type="text" [formControl]="airlineInput" class="form-control" placeholder="{{ 'flights.AIRLINE' | translate }}">
+                    <div *ngIf="airlineInput.invalid && (airlineInput.dirty || airlineInput.touched)" class="required">Required</div>
                 </div>
-                <div class="card-body">
-                    <form [formGroup]="flightsForm">
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.AIRLINE' | translate }}</label>
-                            <input type="text" [formControl]="airlineInput" class="form-control" placeholder="{{ 'flights.AIRLINE' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.ARRIVAL_DATE' | translate }}</label>
-                            <input type="text"                            
-                                [formControl]="arrivalDate" 
-                                class="form-control" 
-                                placeholder="{{ 'flights.ARRIVAL_DATE' | translate }}" 
-                                bsDatepicker
-                                [bsConfig]="{ isAnimated: true }">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.ARRIVAL_TIME' | translate }}</label>
-                            <input type="text" [formControl]="arrivalTime" class="form-control" placeholder="{{ 'flights.ARRIVAL_TIME' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.AM_PM' | translate }}</label>
-                            <input type="text" [formControl]="arrivalAmPm" class="form-control" placeholder="{{ 'flights.AM_PM' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.FLIGHT_NUMBER' | translate }}</label>
-                            <input type="text" [formControl]="flightNumber" class="form-control" placeholder="{{ 'flights.FLIGHT_NUMBER' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.NUMBER_OF_GUESTS' | translate }}</label>
-                            <input type="text" [formControl]="guests" class="form-control" placeholder="{{ 'flights.NUMBER_OF_GUESTS' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.COMMENTS' | translate }}</label>
-                            <textarea [formControl]="comments" class="form-control" placeholder="{{ 'flights.COMMENTS' | translate }}" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label w-100">{{ 'flights.UPLOAD_ITINERARY' | translate }}</label>
-                            <input type="file">
-                            <small class="form-text text-muted">{{ 'flights.TERMS_OF_SERVICE' | translate }}</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check m-0">
-                              <input type="checkbox" checked class="form-check-input">
-                              <span class="form-check-label">{{ 'flights.I_AGREE' | translate }}</span>
-                          </label>
-                      </div>
-                      <button type="submit" class="btn btn-primary" (click)="onSubmitFlightInfo()">{{ 'flights.SUBMIT' | translate }}</button>
-                  </form>
-              </div>
-          </div>
-      </div>
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.ARRIVAL_DATE' | translate }}</label>
+                    <input type="text"                            
+                        [formControl]="arrivalDate" 
+                        class="form-control" 
+                        placeholder="{{ 'flights.ARRIVAL_DATE' | translate }}" 
+                        bsDatepicker
+                        [bsConfig]="{ isAnimated: true }">
+                    <div *ngIf="arrivalDate.invalid && (arrivalDate.dirty || arrivalDate.touched)" class="required">Required</div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.ARRIVAL_TIME' | translate }}</label>
+                    <timepicker type="text"
+                        [formControl]="arrivalTime" 
+                        class="form-control TimePicker" ></timepicker>
+                    <div *ngIf="arrivalTime.invalid && (arrivalTime.dirty || arrivalTime.touched)" class="required">Required</div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.FLIGHT_NUMBER' | translate }}</label>
+                    <input type="text" [formControl]="flightNumber" class="form-control" placeholder="{{ 'flights.FLIGHT_NUMBER' | translate }}">
+                    <div *ngIf="flightNumber.invalid && (flightNumber.dirty || flightNumber.touched)" class="required">Required</div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.NUMBER_OF_GUESTS' | translate }}</label>
+                    <input type="text" [formControl]="guests" class="form-control" placeholder="{{ 'flights.NUMBER_OF_GUESTS' | translate }}">
+                    <div *ngIf="guests.invalid && (guests.dirty || guests.touched)" class="required">Required</div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">{{ 'flights.COMMENTS' | translate }}</label>
+                    <textarea [formControl]="comments" class="form-control" placeholder="{{ 'flights.COMMENTS' | translate }}" rows="3"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label w-100">{{ 'flights.UPLOAD_ITINERARY' | translate }}</label>
+                    <input type="file">
+                    <small class="form-text text-muted">{{ 'flights.TERMS_OF_SERVICE' | translate }}</small>
+                </div>
+                <div class="mb-4">
+                    <label class="form-check m-0">
+                        <input type="checkbox" checked class="form-check-input">
+                        <span class="form-check-label">{{ 'flights.I_AGREE' | translate }}</span>
+                    </label>
+                </div>
+                <button [disabled]="!flightsForm.valid" type="submit" class="btn btn-primary" (click)="onSubmitFlightInfo()">{{ 'flights.SUBMIT' | translate }}</button>
+            </div>
+        </form>
     </div>
 </div>

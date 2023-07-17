@@ -1,66 +1,99 @@
-<div class="FlightsContent">
-    <div id="container">
-        <div id="header">
-            <div id="branding">
-                <h1 id="site-name">{{ 'flights.FLIGHT_INFO' | translate }}</h1>
+<div class="row" *ngIf="flightInfo">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body m-sm-3 m-md-5">
+                <div class="mb-4">
+                    Hello <strong>Test User</strong>,
+                    <br> This is the confirmation receipt for the travel date {{ formatDate(flightInfo.get('arrivalDate')) || null }} with {{ flightInfo.get('airline') }} flight number {{ flightInfo.get('flightNumber') }}.
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-muted">Confirmation No.</div>
+                        <strong>741037024</strong>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <div class="text-muted">Scheduled Date</div>
+                        <strong></strong>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="text-muted">Client</div>
+                        <strong>
+                            Chris Wood
+                        </strong>
+                        <p>
+                            4183 Forest Avenue <br> New York City <br> 10011 <br> USA <br>
+                            <a href="#">
+                                chris.wood@gmail.com
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <div class="text-muted">Payment To</div>
+                        <strong>
+                            AppStack LLC
+                        </strong>
+                        <p>
+                            354 Roy Alley <br> Denver <br> 80202 <br> USA <br>
+                            <a href="#">
+                                info@appstack.com
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th class="text-end">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Resvervation Custom Package</td>
+                            <td>2</td>
+                            <td class="text-end">$150.00</td>
+                        </tr>
+                        <tr>
+                            <td>Inclusive dining Subscription </td>
+                            <td>3</td>
+                            <td class="text-end">$25.00</td>
+                        </tr>
+                        <tr>
+                            <td>Additional Service</td>
+                            <td>1</td>
+                            <td class="text-end">$100.00</td>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Subtotal </th>
+                            <th class="text-end">$275.00</th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Reservation Expense </th>
+                            <th class="text-end">$8.00</th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Member Discount </th>
+                            <th class="text-end">5%</th>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Total </th>
+                            <th class="text-end">$268.85</th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-md-9 col-xxl-9 d-flex">
-            <div class="card">
-                <div class="card-header">
-                    <!-- <h5 class="card-title">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h5> -->
-                    <h6 class="card-subtitle text-muted">{{ 'flights.FLIGHT_SUBMISSION_FORM' | translate }}</h6>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="flightsForm">
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.AIRLINE' | translate }}</label>
-                            <input type="text" [formControl]="airlineInput" class="form-control" placeholder="{{ 'flights.AIRLINE' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.ARRIVAL_DATE' | translate }}</label>
-                            <input type="text"                            
-                                [formControl]="arrivalDate" 
-                                class="form-control" 
-                                placeholder="{{ 'flights.ARRIVAL_DATE' | translate }}" 
-                                bsDatepicker
-                                [bsConfig]="{ isAnimated: true }">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.ARRIVAL_TIME' | translate }}</label>
-                            <input type="text" [formControl]="arrivalTime" class="form-control" placeholder="{{ 'flights.ARRIVAL_TIME' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.AM_PM' | translate }}</label>
-                            <input type="text" [formControl]="arrivalAmPm" class="form-control" placeholder="{{ 'flights.AM_PM' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.FLIGHT_NUMBER' | translate }}</label>
-                            <input type="text" [formControl]="flightNumber" class="form-control" placeholder="{{ 'flights.FLIGHT_NUMBER' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.NUMBER_OF_GUESTS' | translate }}</label>
-                            <input type="text" [formControl]="guests" class="form-control" placeholder="{{ 'flights.NUMBER_OF_GUESTS' | translate }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ 'flights.COMMENTS' | translate }}</label>
-                            <textarea [formControl]="comments" class="form-control" placeholder="{{ 'flights.COMMENTS' | translate }}" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label w-100">{{ 'flights.UPLOAD_ITINERARY' | translate }}</label>
-                            <input type="file">
-                            <small class="form-text text-muted">{{ 'flights.TERMS_OF_SERVICE' | translate }}</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check m-0">
-                              <input type="checkbox" checked class="form-check-input">
-                              <span class="form-check-label">{{ 'flights.I_AGREE' | translate }}</span>
-                          </label>
-                      </div>
-                      <button type="submit" class="btn btn-primary" (click)="onSubmitFlightInfo()">{{ 'flights.SUBMIT' | translate }}</button>
-                  </form>
-              </div>
-          </div>
-      </div>
     </div>
 </div>

@@ -41,46 +41,80 @@ export class AppStateActions {
         private readonly flightService: FlightService,
         private readonly toastr: ToastrService,
         private readonly router: Router,
-    ) {}
+    ) {
+        this.appStateSelectors.isBusy$.subscribe((value: boolean) => {
+            if (!value) {
+                // clear existing timeout
+                clearTimeout(this.clearTimeoutHandle);
+            }
+        });
+    }
 
-    // region PRIVATE MEMBERS
+    /**
+     * @description store ID value of time that was set
+     */
     private clearTimeoutHandle: any;
 
-    private readonly killLoading: () => void = () => this.store.dispatch(AppKillLoading());
-
-    private readonly idleTimeout: () => void = () => {
+    /**
+     * @description sets up an idle timer on pending async activity
+     */
+    private idleTimeout(): void {
         // clear existing timeout
         clearTimeout(this.clearTimeoutHandle);
 
         // start new timeout
         this.clearTimeoutHandle = setTimeout(() => {
-            // console.error('KILLING LOADING!');
             this.killLoading();
-        }, 15000 * 60); // 15 minutes
-    };
-    // endregion
+        }, 15000 * 60);
+    }
 
     /**
-     * store the active subscription to
-     * the current file upload operation here
-     * for possible cancellation
+     * @description force loading animation to just go away
      */
-    private readonly activeFileUploadRequest: any;
+    private killLoading(): void {
+        this.store.dispatch({ type: AppStateActions.APP_KILL_LOADING });
+    }
 
     /**
-     * @description sets idle state.
+     * @description the app is tied up doing stuff
      */
-    idle: () => void = () => this.store.dispatch(AppIdle());
-
-    /**
-     * @description sets busy state.
-     */
-    busy: () => void = () => {
-        this.store.dispatch(AppBusy());
+    busy(): void {
+        this.store.dispatch({ type: AppStateActions.APP_BUSY });
 
         // set timeout
         this.idleTimeout();
-    };
+    }
+
+    /**
+     * @description app is free to process more stuff.
+     */
+    idle(): void {
+        this.store.dispatch({ type: AppStateActions.APP_IDLE });
+    }
+
+    /**
+     * @description used to enable or disable the universal page loading overlay located in AppComponent template
+     * whenever we have some component level loading animation that should take precedence over
+     * the global, universal loading a(nimation), we use this method to drive that
+     * @param {boolean} payload
+     */
+    disableBusy(payload: boolean): void {
+        this.store.dispatch({
+            type: AppStateActions.APP_DISABLE_BUSY,
+            payload,
+        });
+    }
+
+    /**
+     * dispatches TOGGLE_IS_POPPED Redux action to toggle expanded state
+     * @param isPoppedToggle visible state of lightbox styling
+     */
+    toggleIsPopped(isPoppedToggle: boolean): void {
+        this.store.dispatch({
+            type: AppStateActions.APP_TOGGLE_IS_POPPED,
+            payload: isPoppedToggle,
+        });
+    }
 
     /**
      * @description updates state for username.
@@ -212,7 +246,7 @@ export class AppStateActions {
                     //     type: AppStateActions.APP_UPDATE_PASSWORD,
                     //     payload: true
                     // });
-                    this.toastr.success(response);
+                    this.router.navigate(['/Flights'])
                 },
                 () => {
                     this.toastr.error('Failure');

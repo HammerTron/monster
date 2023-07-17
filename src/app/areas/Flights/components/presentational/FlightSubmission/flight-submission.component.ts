@@ -14,18 +14,16 @@ import { filterUndefined } from '../../../../../utils/filter-undefined.util';
 })
 export class FlightSubmissionComponent {
     constructor(private readonly appActions: AppStateActions) {
-        this.airlineInput = new FormControl('', Validators.minLength(1));
-        this.arrivalAmPm = new FormControl('', Validators.minLength(1));
-        this.arrivalDate = new FormControl('', Validators.minLength(1));
-        this.arrivalTime = new FormControl('', Validators.minLength(1));
-        this.flightNumber = new FormControl('', Validators.minLength(1));
-        this.guests = new FormControl('', Validators.minLength(1));
-        this.comments = new FormControl('', Validators.minLength(1));
+        this.airlineInput = new FormControl('', Validators.required);
+        this.arrivalDate = new FormControl('', Validators.required);
+        this.arrivalTime = new FormControl('', Validators.required);
+        this.flightNumber = new FormControl('', Validators.required);
+        this.guests = new FormControl('', Validators.required);
+        this.comments = new FormControl('', undefined);
 
         // build Flights Information FormControl group
         this.flightsForm = new FormGroup({
             airlineInput: this.airlineInput,
-            arrivalAmPm: this.arrivalAmPm,
             arrivalDate: this.arrivalDate,
             arrivalTime: this.arrivalTime,
             flightNumber: this.flightNumber,
@@ -40,23 +38,15 @@ export class FlightSubmissionComponent {
         });
 
         // subscribe to any form changes
-        this.arrivalAmPm.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
-            console.log(value);
-            // emit updated password value event
-            this.appActions.updateArrivalDate(moment(value).format('YYYY-MM-DDTHH:mm:ssZ'));
-        });
-
-        // subscribe to any form changes
         this.arrivalDate.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
-            console.log(moment(value).format('YYYY-MM-DDTHH:mm:ssZ'));
             // emit updated password value event
             this.appActions.updateArrivalDate(moment(value).format('YYYY-MM-DDTHH:mm:ssZ'));
         });
 
         // subscribe to any form changes
-        this.arrivalTime.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: string) => {
+        this.arrivalTime.valueChanges.pipe(filterUndefined, distinctUntilChanged()).subscribe((value: any) => {
             // emit updated password value event
-            this.appActions.updateArrivalTime(value.trim());
+            this.appActions.updateArrivalTime(value);
         });
 
         // subscribe to any form changes
@@ -87,11 +77,6 @@ export class FlightSubmissionComponent {
      * username input field
      */
     airlineInput: FormControl;
-
-    /**
-     * arrivalAmPm input field
-     */
-    arrivalAmPm: FormControl;
 
     /**
      * arrivalDate input field
